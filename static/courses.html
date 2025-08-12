@@ -1,92 +1,422 @@
-<DocType html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - DevOps Learning Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<html>
-    <head>
-        <title>Learn DevOps from Basics</title>
-        <style>
-            body {
-                margin: 0;
-                padding: 0;
-            }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
 
-            header {
-                background-color: #333;
-                color: #fff;
-                padding: 10px 0;
-                text-align: center;
-            }
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .hero-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .course-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .course-header h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-header p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .course-content {
+            padding: 2rem;
+        }
+
+        .course-content h4 {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        .course-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .course-content li {
+            padding: 0.5rem 0;
+            color: #666;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .course-content li:before {
+            content: "✓";
+            color: #667eea;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .course-level {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .category-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .category-section h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-item {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .category-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .category-item h4 {
+            color: #2c3e50;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background: rgba(44, 62, 80, 0.95);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
             nav ul {
-                list-style-type: none;
-                padding: 0;
+                flex-direction: column;
+                gap: 1rem;
             }
 
-            nav ul li {
-                display: inline;
-                margin-right: 10px;
-            }
-
-            nav ul li a {
-                color: #fff;
-                text-decoration: none;
+            .hero-section h1 {
+                font-size: 2rem;
             }
 
             main {
-                padding: 20px;
+                padding: 2rem 1rem;
             }
 
-            section {
-                margin-bottom: 20px;
+            .courses-grid {
+                grid-template-columns: 1fr;
             }
 
-            footer {
-                background-color: #333;
-                color: #fff;
-                text-align: center;
-                padding: 10px 0;
-                position: fixed;
-                bottom: 0;
-                width: 100%;
+            .category-grid {
+                grid-template-columns: 1fr;
             }
-        </style>
-    </head>
-    <body>
-        <header>
-            <nav>
-                <ul>
-                    <li><a href="home">Home</a></li>
-                    <li><a href="about">About</a></li>
-                    <li><a href="contact">Contact</a></li>
-                    <li><a href="courses">Courses</a></li>
-                </ul>
-            </nav>
-        </header>
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home">Home</a></li>
+                <li><a href="about">About</a></li>
+                <li><a href="contact">Contact</a></li>
+                <li><a href="courses">Courses</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <main>
-            <section>
-                <h1>Learn DevOps from Basics</h1>
-                <p>DevOps is a set of practices that combines software development (Dev) and IT operations (Ops)</p>
-                <p>It aims to shorten the systems development life cycle and provide continuous delivery with high software quality. DevOps is complementary with Agile software development; several DevOps aspects came from Agile methodology</p>    
+    <main>
+        <div class="hero-section">
+            <h1>DevOps Learning Paths</h1>
+            <p>Master DevOps from fundamentals to advanced concepts with our comprehensive course offerings. Our structured learning paths are designed to take you from beginner to expert in modern DevOps practices.</p>
+        </div>
 
-                <h2>Main Tutorials</h2>
-                <p><a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvIKMhk8WhzN1pYoJ1YU8Csa">DevOps Zero to Hero</a></p>
-                <p><a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvLNOxX0RfndiYSt1Le9azze">AWS Zero to Hero</a></p>
-                <p><a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvIcxgCUyBHVOcWs0Krjx9xR">Azure Zero to Hero</a></p>
-                <p><a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvI0O4PeKVV1-yJoX2AqIWuf">Terraform Zero to Hero</a></p>
-                <p><a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvKwTyYNJCUwGPvql0TrsPgv">Python Zero to Hero</a></p>
+        <div class="courses-grid">
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>DevOps Fundamentals</h3>
+                    <p>Complete beginner to advanced DevOps practices</p>
+                </div>
+                <div class="course-content">
+                    <h4>What You'll Learn</h4>
+                    <ul>
+                        <li>Core DevOps principles and methodologies</li>
+                        <li>Version control with Git</li>
+                        <li>Containerization with Docker</li>
+                        <li>Orchestration with Kubernetes</li>
+                        <li>CI/CD pipeline implementation</li>
+                        <li>Infrastructure as Code</li>
+                    </ul>
+                    <div class="course-level">Beginner to Advanced</div>
+                </div>
+            </div>
 
-                <h2>Additional Tutorials</h2>
-                <p><a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvKv4MFW35XRskZbQbrt6ep-">Networking Fundamentals</a></p>
-                <p><a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvLxd5nmtmORCmhD5jkrNbuE">Ansible Zero to Hero</a></p>
-                <p><a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvKu7OZpgj1-MzJFqZ8RBp6f">GitOps Zero to Hero</a></p>
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>AWS Cloud Platform</h3>
+                    <p>Master Amazon Web Services for DevOps</p>
+                </div>
+                <div class="course-content">
+                    <h4>What You'll Learn</h4>
+                    <ul>
+                        <li>AWS core services and architecture</li>
+                        <li>EC2, S3, and VPC management</li>
+                        <li>Lambda and serverless computing</li>
+                        <li>AWS DevOps tools and services</li>
+                        <li>CloudFormation and CDK</li>
+                        <li>Security and compliance</li>
+                    </ul>
+                    <div class="course-level">Intermediate to Advanced</div>
+                </div>
+            </div>
 
-                <h2>Troubleshooting Tutorials</h2>
-                <p><a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvIrFBI1farpLS_OSUBXJMLX">Troubleshooting Kubernetes</a></p>
-            </section>
-        </main>
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Azure Cloud Platform</h3>
+                    <p>Microsoft Azure for DevOps professionals</p>
+                </div>
+                <div class="course-content">
+                    <h4>What You'll Learn</h4>
+                    <ul>
+                        <li>Azure core services and concepts</li>
+                        <li>Virtual machines and networking</li>
+                        <li>Azure DevOps and pipelines</li>
+                        <li>Azure Kubernetes Service (AKS)</li>
+                        <li>ARM templates and Bicep</li>
+                        <li>Azure security and monitoring</li>
+                    </ul>
+                    <div class="course-level">Intermediate to Advanced</div>
+                </div>
+            </div>
 
-        <footer>
-            <p>&copy; Abhishek.Veeramalla</p>
-        </footer>
-    </body>
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Terraform Infrastructure</h3>
+                    <p>Infrastructure as Code with Terraform</p>
+                </div>
+                <div class="course-content">
+                    <h4>What You'll Learn</h4>
+                    <ul>
+                        <li>Terraform fundamentals and syntax</li>
+                        <li>Resource management and state</li>
+                        <li>Modules and reusable code</li>
+                        <li>Multi-cloud deployments</li>
+                        <li>Best practices and security</li>
+                        <li>Advanced Terraform patterns</li>
+                    </ul>
+                    <div class="course-level">Intermediate to Advanced</div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Python for DevOps</h3>
+                    <p>Automation and scripting with Python</p>
+                </div>
+                <div class="course-content">
+                    <h4>What You'll Learn</h4>
+                    <ul>
+                        <li>Python fundamentals for automation</li>
+                        <li>Working with APIs and web services</li>
+                        <li>File and system operations</li>
+                        <li>Database interactions</li>
+                        <li>Testing and debugging</li>
+                        <li>DevOps automation scripts</li>
+                    </ul>
+                    <div class="course-level">Beginner to Intermediate</div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>GitOps & Advanced CI/CD</h3>
+                    <p>Modern deployment strategies</p>
+                </div>
+                <div class="course-content">
+                    <h4>What You'll Learn</h4>
+                    <ul>
+                        <li>GitOps principles and practices</li>
+                        <li>ArgoCD and Flux deployment</li>
+                        <li>Advanced CI/CD pipelines</li>
+                        <li>Blue-green and canary deployments</li>
+                        <li>Monitoring and observability</li>
+                        <li>Security in CI/CD</li>
+                    </ul>
+                    <div class="course-level">Advanced</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-section">
+            <h2>Additional Learning Resources</h2>
+            <div class="category-grid">
+                <div class="category-item">
+                    <h4>Networking Fundamentals</h4>
+                    <p>Essential networking concepts for DevOps professionals</p>
+                </div>
+
+                <div class="category-item">
+                    <h4>Ansible Automation</h4>
+                    <p>Configuration management and automation with Ansible</p>
+                </div>
+
+                <div class="category-item">
+                    <h4>Kubernetes Troubleshooting</h4>
+                    <p>Debug and resolve common Kubernetes issues</p>
+                </div>
+
+                <div class="category-item">
+                    <h4>Security Best Practices</h4>
+                    <p>DevSecOps and security integration in CI/CD</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 DevOps Learning Platform. All rights reserved.</p>
+    </footer>
+</body>
 </html>
