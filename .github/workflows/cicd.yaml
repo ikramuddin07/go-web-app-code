@@ -21,10 +21,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Set up Go 1.21
+    - name: Set up Go 1.22.5
       uses: actions/setup-go@v2
       with:
-        go-version: 1.21
+        go-version: 1.22.5
 
     - name: Build
       run: go build -o go-web-app
@@ -33,16 +33,24 @@ jobs:
       run: go test ./...
   
   code-quality:
-    runs-on: ubuntu-latest
+  runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+  steps:
+  - name: Checkout repository
+    uses: actions/checkout@v4
 
-    - name: Run golangci-lint
-      uses: golangci/golangci-lint-action@v6
-      with:
-        version: v1.56.2
+  - name: Run golangci-lint
+    uses: golangci/golangci-lint-action@v6
+    with:
+      version: v1.59.1
+      install-mode: binary
+      github-token: ${{ secrets.GITHUB_TOKEN }}
+      verify: true
+      only-new-issues: false
+      skip-cache: false
+      skip-save-cache: false
+      problem-matchers: false
+      cache-invalidation-interval: 7
   
   push:
     runs-on: ubuntu-latest
