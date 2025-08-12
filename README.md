@@ -6,6 +6,10 @@ A comprehensive DevOps demonstration project showcasing industry-standard practi
 
 This project demonstrates end-to-end DevOps practices including containerization, orchestration, infrastructure as code, and automated deployment strategies. The application serves as a simple web platform while the focus remains on implementing DevOps best practices.
 
+![DevOps Learning Platform Interface](static/images/golang-website.png)
+
+*The application features a modern simple webpage*
+
 ## DevOps Features Demonstrated
 
 - **Containerization**: Multi-stage Docker builds with security optimization
